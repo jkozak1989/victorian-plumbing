@@ -4,8 +4,8 @@ import { FormattedActiveFacets } from './components/Sidebar/types';
 
 const INITIAL_FILTER = {
   query: "toilets",
-  pageNumber: 0,
-  size: 0,
+  pageNumber: 1,
+  size: 30,
   additionalPages: 0,
   sort: 1
 };
@@ -45,10 +45,18 @@ export const useProducts = () => {
     }
   });
     
+  const handleLoadMore = () => {
+    setFilter(prev => ({
+      ...prev,
+      pageNumber: prev.pageNumber + 1
+    }));
+  };
+    
   const handleChangeSort = (value: number) => {
     setFilter(prev => ({
       ...prev,
-      sort: value
+      sort: value,
+      pageNumber: 1
     }));
   };
     
@@ -56,13 +64,15 @@ export const useProducts = () => {
     if (Object.keys(facets).length == 0) {
       setFilter(prev => ({
         ...prev,
-        facets: undefined
+        facets: undefined,
+        pageNumber: 1
       }));
       return;
     }
     setFilter(prev => ({
       ...prev,
-      facets: facets
+      facets: facets,
+      pageNumber: 1
     }));
   };
     
@@ -77,8 +87,16 @@ export const useProducts = () => {
     }).then(response => {
       return response.json();
     }).then((content: ProductsResult) => {
+        if (content.pagination.from !== 0) {
+          setProductsResult(prev => ({
+            pagination: content.pagination,
+            products: [...prev.products, ...content.products],
+            facets: content.facets
+          }))
+          return;
+        }
         setProductsResult(content)
     })
   }, [filter]);
-  return { productsResult, sortTypes, filter, handleChangeSort, handleChangeFacets };
+  return { productsResult, sortTypes, filter, handleChangeSort, handleChangeFacets, handleLoadMore };
 };

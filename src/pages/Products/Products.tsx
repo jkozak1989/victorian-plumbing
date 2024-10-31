@@ -7,7 +7,7 @@ import { useProducts } from './Products.hooks';
 import './Products.css';
 
 export const Products = () => {
-  const { productsResult, sortTypes, filter, handleChangeSort, handleChangeFacets } = useProducts();
+  const { productsResult, sortTypes, filter, handleChangeSort, handleChangeFacets, handleLoadMore } = useProducts();
   return (
     <section className='products-container'>
       <Sidebar
@@ -34,7 +34,14 @@ export const Products = () => {
           <div>{productsResult.pagination.total} results</div>
         </div>
         <ProductGrid products={productsResult.products} />
-        <div className='products-load-more'>Load more</div>
+        {productsResult.products.length < productsResult.pagination.total && (
+          <div
+            className='products-load-more'
+            onClick={handleLoadMore}
+          >
+            Load more
+          </div>
+        )}
       </div>
     </section>
   );

@@ -12,4 +12,20 @@
       background-color: white;
     }
   }
+
+  & .products-load-more {
+    margin: 0 auto;
+    margin-top: 2rem;
+    background-color: white;
+    width: max-content;
+    cursor: pointer;
+    padding: 1rem 3rem;
+    font-size: larger;
+    font-weight: 700;
+    box-shadow: 0.0625rem 0.125rem #ccc;
+  }
+
+  & .products-load-more:hover {
+    background-color: #f7f7f7;
+  }
 }
