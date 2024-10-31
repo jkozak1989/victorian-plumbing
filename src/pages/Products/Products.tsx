@@ -1,5 +1,3 @@
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { ProductGrid } from './components/ProductGrid/ProductGrid';
 import Select from '@mui/material/Select/Select';
