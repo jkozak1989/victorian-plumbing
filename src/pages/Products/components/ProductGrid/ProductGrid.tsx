@@ -9,7 +9,10 @@ export const ProductGrid: FC<{ products: Product[] }> = (props) => {
   return (
     <section className='products-grid'>
       {products.map((product: Product) => (
-        <ProductCard product={product} />
+        <ProductCard
+          product={product}
+          key={product.id}
+        />
       ))}
     </section>
   );

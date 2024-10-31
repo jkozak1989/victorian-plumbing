@@ -1,0 +1,31 @@
+.sidebar-card {
+  width: 18rem;
+  background-color: white;
+  box-shadow: 0.0625rem 0.125rem #ccc;
+
+  & .sidebar-card-title {
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: larger;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  & .sidebar-card-content {
+    padding-bottom: 0.5rem;
+    border-top: 0.0625rem solid #ccc;
+
+    & .sidebar-card-content-row{
+      padding-top: 0.5rem;
+      margin-left: 0.5rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      & .sidebar-checkbox {
+        padding: 0;
+      }
+    }
+  }
+}

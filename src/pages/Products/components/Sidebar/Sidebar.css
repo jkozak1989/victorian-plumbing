@@ -1,0 +1,12 @@
+.sidebar {
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+
+  & .sidebar-title {
+    font-size: x-large;
+    font-weight: 700;
+    color: #535353;
+  }
+}
