@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ProductsResult } from './types';
 
 export const useProducts = () => {
@@ -10,7 +10,16 @@ export const useProducts = () => {
       additionalPages: 0,
       sort: 1
   }
-  let productsResult: Partial<ProductsResult> = {};
+  const [productsResult, setProductsResult] = useState<ProductsResult>({
+    facets: [],
+    products: [],
+    pagination: {
+      from: 0,
+      size: 0,
+      total: 0,
+      sortType: 1
+    }
+  });
     
   useEffect(() => {
     fetch('https://spanishinquisition.victorianplumbing.co.uk/interviews/listings?apikey=yj2bV48J40KsBpIMLvrZZ1j1KwxN4u3A83H8IBvI', {
@@ -23,7 +32,7 @@ export const useProducts = () => {
     }).then(response => {
       return response.json();
     }).then((content: ProductsResult) => {
-        productsResult = content;
+        setProductsResult(content)
         console.log(content);
     })
   }, []);

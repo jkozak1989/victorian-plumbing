@@ -1,0 +1,99 @@
+.product-card {
+  width: 18rem;
+  background-color: white;
+  box-shadow: 0.0625rem 0.125rem #ccc;
+
+  & .product-card-img-container {
+    position: relative;
+    height: 16rem;
+
+    & .product-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    & .product-card-best-seller {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(3, 138, 255, 0.5);
+      color: white;
+      text-align: center;
+    }
+    & .product-card-sale {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: red;
+      color: white;
+      font-weight: 700;
+      margin: 0.25rem;
+      padding: 0.25rem;
+    }
+  }
+
+ & .product-card-info {
+  padding: 0.5rem;
+
+  & .product-card-brand {
+    height: 1.5rem;
+    width: auto;
+  }
+
+  & .product-card-name-row {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    & .product-card-name {
+      width: 14rem;
+      height: 2.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    & .product-card-favourite {
+      width: 1.5rem;
+      color: #23c523;
+    }
+  }
+
+  & .product-card-price {
+    color: red;
+    font-size: large;
+    font-weight: 700;
+  }
+
+  & .product-card-stock {
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    & .product-card-stock-checked {
+      padding: 0;
+      color: #23c523;
+    }
+
+    & .product-card-stock-unchecked {
+      padding: 0;
+    }
+  }
+
+  & .product-card-rating {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    & .product-card-rating-count {
+      margin-left: 0.5rem;
+      color: #929292
+    }
+  }
+ }
+}
