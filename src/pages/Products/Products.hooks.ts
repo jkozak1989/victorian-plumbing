@@ -78,24 +78,24 @@ export const useProducts = () => {
     
   useEffect(() => {
     fetch('https://spanishinquisition.victorianplumbing.co.uk/interviews/listings?apikey=yj2bV48J40KsBpIMLvrZZ1j1KwxN4u3A83H8IBvI', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(filter)
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filter)
     }).then(response => {
       return response.json();
     }).then((content: ProductsResult) => {
-        if (content.pagination.from !== 0) {
-          setProductsResult(prev => ({
-            pagination: content.pagination,
-            products: [...prev.products, ...content.products],
-            facets: content.facets
-          }))
-          return;
-        }
-        setProductsResult(content)
+      if (content.pagination.from !== 0) {
+        setProductsResult(prev => ({
+          pagination: content.pagination,
+          products: [...prev.products, ...content.products],
+          facets: content.facets
+        }))
+        return;
+      }
+      setProductsResult(content)
     })
   }, [filter]);
   return { productsResult, sortTypes, filter, handleChangeSort, handleChangeFacets, handleLoadMore };

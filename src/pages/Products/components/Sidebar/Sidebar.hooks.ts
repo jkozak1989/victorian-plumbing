@@ -22,7 +22,7 @@ export const useSidebar = (props: SidebarProps) => {
       }
       acc[facet.key].push({ identifier: facet.identifier, value: facet.value });
       return acc;
-  }, {});
+    }, {});
   };
     
   return {
