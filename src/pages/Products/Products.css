@@ -1,4 +1,15 @@
 .products-container {
   display: flex;
   column-gap: 2rem;
+
+  & .products-top-bar {
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .products-top-bar-select {
+      background-color: white;
+    }
+  }
 }

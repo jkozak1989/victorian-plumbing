@@ -107,3 +107,8 @@ export interface StockStatus {
 export enum Status {
     G = "G",
 }
+
+export interface SortType {
+    id: number;
+    name: string;
+}

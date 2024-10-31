@@ -31,7 +31,7 @@ export const SidebarCard: FC<{ facet: Facet }> = (props) => {
               key={option.identifier}
             >
               <Checkbox className='sidebar-checkbox' />
-              {option.displayValue}
+              {`${option.displayValue} (${option.productCount})`}
             </div>
           ))}
         </div>
