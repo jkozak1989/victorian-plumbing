@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ProductsResult, SortType } from './types';
+import { FormattedActiveFacets } from './components/Sidebar/types';
 
 const INITIAL_FILTER = {
   query: "toilets",
@@ -44,10 +45,24 @@ export const useProducts = () => {
     }
   });
     
-  const handleChangeFilter = (key: string, value: any) => {
+  const handleChangeSort = (value: number) => {
     setFilter(prev => ({
       ...prev,
-      [key]: value
+      sort: value
+    }));
+  };
+    
+  const handleChangeFacets = (facets: FormattedActiveFacets) => {
+    if (Object.keys(facets).length == 0) {
+      setFilter(prev => ({
+        ...prev,
+        facets: undefined
+      }));
+      return;
+    }
+    setFilter(prev => ({
+      ...prev,
+      facets: facets
     }));
   };
     
@@ -63,9 +78,7 @@ export const useProducts = () => {
       return response.json();
     }).then((content: ProductsResult) => {
         setProductsResult(content)
-        console.log(content);
     })
   }, [filter]);
-
-  return { productsResult, sortTypes, filter, handleChangeFilter };
+  return { productsResult, sortTypes, filter, handleChangeSort, handleChangeFacets };
 };

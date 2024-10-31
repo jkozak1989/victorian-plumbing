@@ -1,18 +1,15 @@
-import { FC, useState } from 'react';
-import { Facet } from '../../types';
+import { FC } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { SidebarCardProps } from './types';
+import { useSidebarCard } from './SidebarCard.hooks';
 
 import './SidebarCard.css';
 
-export const SidebarCard: FC<{ facet: Facet }> = (props) => {
-  const [collapsed, setCollapsed] = useState<boolean>(true);
-  const { facet } = props;
-
-  const handleChangeCollapsed = () => {
-    setCollapsed((prev) => !prev);
-  };
+export const SidebarCard: FC<SidebarCardProps> = (props) => {
+  const { facet, activeFacets } = props;
+  const { collapsed, handleChangeCheckbox, handleChangeCollapsed } = useSidebarCard(props);
 
   return (
     <section className='sidebar-card'>
@@ -30,7 +27,11 @@ export const SidebarCard: FC<{ facet: Facet }> = (props) => {
               className='sidebar-card-content-row'
               key={option.identifier}
             >
-              <Checkbox className='sidebar-checkbox' />
+              <Checkbox
+                className='sidebar-checkbox'
+                onClick={() => handleChangeCheckbox(option)}
+                checked={activeFacets.some((facet) => facet.identifier === option.identifier)}
+              />
               {`${option.displayValue} (${option.productCount})`}
             </div>
           ))}

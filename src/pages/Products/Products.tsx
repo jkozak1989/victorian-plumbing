@@ -7,15 +7,18 @@ import { useProducts } from './Products.hooks';
 import './Products.css';
 
 export const Products = () => {
-  const { productsResult, sortTypes, filter, handleChangeFilter } = useProducts();
+  const { productsResult, sortTypes, filter, handleChangeSort, handleChangeFacets } = useProducts();
   return (
     <section className='products-container'>
-      <Sidebar facets={productsResult.facets} />
+      <Sidebar
+        facets={productsResult.facets}
+        onChangeFacets={handleChangeFacets}
+      />
       <div>
         <div className='products-top-bar'>
           <Select
             value={filter.sort}
-            onChange={(e) => handleChangeFilter('sort', e.target.value)}
+            onChange={(e) => handleChangeSort(e.target.value as number)}
             size='small'
             className='products-top-bar-select'
           >
@@ -31,6 +34,7 @@ export const Products = () => {
           <div>{productsResult.pagination.total} results</div>
         </div>
         <ProductGrid products={productsResult.products} />
+        <div className='products-load-more'>Load more</div>
       </div>
     </section>
   );
